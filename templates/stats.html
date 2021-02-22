@@ -1,0 +1,48 @@
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif	">
+	<div class="navbar-wrap">
+	<nav id="navbar_top" class="navbar navbar-expand-lg" style="background-color:#E98DAA">
+	<div class="container">
+	  <h1 style="color:#fff">Corona Statistics</h1>
+	 
+	  <div class="collapse navbar-collapse" id="main_nav">
+	  	
+		<ul class="navbar-nav ml-auto" style="color:#fff">
+			<li class="nav-item" style="color:#fff"><a class="nav-link" href="{{ url_for('home')}}" style="color:#fff"><b>Home</b> </a></li>
+			<li class="nav-item"><button type="submit" style="padding:0px;background-color:transparent;border:none;color:#fff;"><a class="nav-link" href="{{ url_for('stats')}}" style="color:#fff"><b> Statistics </b></a></button></li>
+		</ul>
+
+	  </div> <!-- navbar-collapse.// -->
+	</div> <!-- container.// -->
+	</nav>
+	<div>
+	<p></p>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col" style="">
+				<img src="static/front-page.png" width=20% >
+				<h1 style="color:#6A4163; text-align:center;float:right;margin-top:60px;font-size:50px;padding-right:70px;"><b>Visualize COVID-19 Statistics</b></h1>
+			</div>
+			
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col" style="text-align:center">
+			<h4>Enter the country name to get the statistics</h4>
+			<div><p></p></div>
+				<form method="POST" action= "{{ url_for('statistics') }}" style="border-radius:8px;border:10px solid #E98DAA;margin:30px;margin-left:70px;padding:20px 0px">
+					<input type="text" name="country" placeholder="Country	" style="width:40%"><br><br>
+					 <a href="{{ url_for('statistics') }}"><input type="submit" style="width:20%;background-color:#E98DAA;color:white;padding:10px;border-radius:10px"></a>
+				</form>
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html>
+

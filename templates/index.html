@@ -1,0 +1,42 @@
+	<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif	">
+	<div class="navbar-wrap">
+	<nav id="navbar_top" class="navbar navbar-expand-lg" style="background-color:#E98DAA">
+	<div class="container">
+	  <h1 style="color:#fff">Corona Statistics</h1>
+	 
+	  <div class="collapse navbar-collapse" id="main_nav">
+	  	
+		<ul class="navbar-nav ml-auto" style="color:#fff">
+			<li class="nav-item" style="color:#fff"><a class="nav-link" href="{{ url_for('home')}}" style="color:#fff"><b>Home</b> </a></li>
+			<li class="nav-item"><button type="submit" style="padding:0px;background-color:transparent;border:none;color:#fff;"><a class="nav-link" href="{{ url_for('stats')}}" style="color:#fff"><i class="fa fa-calendar" aria-hidden="true"></i><b> Statistics </b></a></button></li>
+		</ul>
+
+	  </div> <!-- navbar-collapse.// -->
+	</div> <!-- container.// -->
+	</nav>
+	<div>
+	<p></p>
+	</div>
+	<div class="container">
+  <div class="row">
+    <div class="col">
+      <img src="static/front-page.png" width=100% style="margin-top:40px;">
+	  <h2 style="color:#E98DAA; text-align:center"><b>Stay Home. Stay Safe</b></h2>
+    </div>
+    <div class="col">
+      <div style="border-radius: 25px;padding:20px;margin-top:40px;font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;text-align:justify">
+	  Everybody in our society is eager to know the latest news about the Covid-19 pandemic, the numbers of newly infected persons, death rates and other epidemiological facts. The alarming economic consequences are discussed based on indicators referring to unemployment, losses in production output and GDP and others, at global, country and micro levels. Insufficient information about the social consequences of loss of work, closed schools, the overloaded health system causes speculations.
+	  <br>Visualizing Covid-19 Statistics helps understand the raise or fall in a easy way.<br><br>
+	  <a href="{{ url_for('stats') }}"><button value="submit" style="width:40%;background-color:#E98DAA;color:white;padding:10px;border-radius:10px"><b>Covid-19 Statistics</b></button></a>
+	  </div>
+	  
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

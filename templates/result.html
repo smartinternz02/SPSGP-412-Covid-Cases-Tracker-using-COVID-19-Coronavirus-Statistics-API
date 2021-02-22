@@ -1,0 +1,285 @@
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<style>
+						table {
+						font-family: Arial, Helvetica, sans-serif;
+					  border-collapse: collapse;
+					  width: 100%;
+					}
+					td, th {
+					  border: 1px solid #ddd;
+					  padding: 8px;
+					}
+					tr:nth-child(even){background-color: #f2f2f2;}
+					tr:hover {background-color: #ddd;}
+					th {
+					  padding-top: 12px;
+					  padding-bottom: 12px;
+					  text-align: left;
+					  background-color: #E98DAA;
+					  color: white;
+					}
+					.progress-pie-chart {
+					width:200px;
+					height: 200px;
+					border-radius: 50%;
+					background-color: #E5E5E5;
+					position: relative;
+					}
+					.progress-pie-chart.gt-50 {
+					background-color:#E98DAA;
+					}
+
+					.ppc-progress {
+					content: "";
+					position: absolute;
+					border-radius: 50%;
+					left: calc(50% - 100px);
+					top: calc(50% - 100px);
+					width: 200px;
+					height: 200px;
+					clip: rect(0, 200px, 200px, 100px);
+					}
+					.ppc-progress .ppc-progress-fill {
+					content: "";
+					position: absolute;
+					border-radius: 50%;
+					left: calc(50% - 100px);
+					top: calc(50% - 100px);
+					width: 200px;
+					height: 200px;
+					clip: rect(0, 100px, 200px, 0);
+					background: #E98DAA;
+					transform: rotate(60deg);
+					}
+					.gt-50 .ppc-progress {
+					clip: rect(0, 100px, 200px, 0);
+					}
+					.gt-50 .ppc-progress .ppc-progress-fill {
+					clip: rect(0, 200px, 200px, 100px);
+					background: #E5E5E5;
+					}
+
+					.ppc-percents {
+					content: "";
+					position: absolute;
+					border-radius: 50%;
+					left: calc(50% - 173.91304px/2);
+					top: calc(50% - 173.91304px/2);
+					width: 173.91304px;
+					height: 173.91304px;
+					background: #fff;
+					text-align: center;
+					display: table;
+					}
+					.ppc-percents span {
+					display: block;
+					font-size: 2.6em;
+					font-weight: bold;
+					color: #E98DAA;
+					}
+
+					.pcc-percents-wrapper {
+					display: table-cell;
+					vertical-align: middle;
+					}
+
+					.progress-pie-chart {
+					margin: 50px auto 0;
+					}
+
+					.main_container{
+					width: 50%;
+					float: left;
+
+					}
+	</style>
+	<script>
+				$(document).ready(function() {
+				var progressbar = $('#progress_bar');
+				max = progressbar.attr('max');
+				time = (1000 / max) * 5;
+				value = progressbar.val();
+				
+				var progressbar1 = $('#progress_bar1');
+				max1 = progressbar1.attr('max');
+				time1 = (1000 / max) * 5;
+				value1 = progressbar1.val();
+
+				var progressbar2 = $('#progress_bar2');
+				max2 = progressbar2.attr('max');
+				time2 = (1000 / max2) * 5;
+				value2 = progressbar2.val();
+
+				var loading = function() {
+				if (value < max) {
+				value += 1;
+				addValue = progressbar.val(value);
+				}
+				if (value1 < max1) {
+				value1 += 1;
+				addValue = progressbar1.val(value1);
+				}
+				if (value2 < max2) {
+				value2 += 1;
+				addValue2 = progressbar2.val(value2);
+				}
+
+				$('#progress_bar').html(value + '%');
+				$('#progress_bar1').html(value + '%');
+				$('#progress_bar2').html(value2 + '%');
+
+				var $ppc = $('#pbar'),
+				deg = 360 * value / 100;
+				if (value > 50) {
+				$ppc.addClass('gt-50');
+				}
+				var $ppc1 = $('#pbar1'),
+				deg1 = 360 * value1 / 100;
+				if (value > 50) {
+				$ppc1.addClass('gt-50');
+				}
+				var $ppc2 = $('#pbar2'),
+				deg2 = 360 * value2 / 100;
+				if (value2 > 50) {
+				$ppc2.addClass('gt-50');
+				}
+
+				$('#progress-fill').css('transform', 'rotate(' + deg + 'deg)');
+				$('#progress-fill1').css('transform', 'rotate(' + deg1 + 'deg)');
+				$('#progress-fill2').css('transform', 'rotate(' + deg2 + 'deg)');
+
+				$('#ppc-percents span').html(value + '%');
+				$('#ppc-percents1 span').html(value1 + '%');
+				$('#ppc-percents2 span').html(value2 + '%');
+
+				if (value == max) {
+				clearInterval(animate);
+				}
+				};
+
+				var animate = setInterval(function() {
+				loading();
+				}, time);
+				});
+	</script>
+</head>
+<body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif	">
+	<div class="navbar-wrap">
+	<nav id="navbar_top" class="navbar navbar-expand-lg" style="background-color:#E98DAA">
+	<div class="container">
+	  <h1 style="color:#fff">Corona Statistics</h1>
+	 
+	  <div class="collapse navbar-collapse" id="main_nav">
+	  	
+		<ul class="navbar-nav ml-auto" style="color:#fff">
+			<li class="nav-item" style="color:#fff"><a class="nav-link" href="{{ url_for('home')}}" style="color:#fff"><b>Home</b> </a></li>
+			<li class="nav-item"><button type="submit" style="padding:0px;background-color:transparent;border:none;color:#fff;"><a class="nav-link" href="{{ url_for('stats')}}" style="color:#fff"><b> Statistics </b></a></button></li>
+		</ul>
+
+	  </div> <!-- navbar-collapse.// -->
+	</div> <!-- container.// -->
+	</nav>
+	<div>
+	<p></p>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col" style="text-align:center">
+			<h2>Country Name - <b>{{ essay }}</b></h2>
+			<div style="font-size:20px;font-family:Tahoma;margin-left:10%;margin-right:10%;padding:1%;text-align:justify;border:3px solid #ddd;border-radius:4px;">
+<table border="1">
+    <thead>
+        <tr>
+            {% for col in colnames %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+        <tr>
+            {% for col in colnames %}
+            <td>{{ record[col] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+			</div>
+			
+		</div>
+	</div>
+	
+	
+	
+	
+	<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="bar_container">
+	<div id="main_container">
+		<div id="pbar" class="progress-pie-chart" data-percent="0">
+			<div class="ppc-progress">
+				<div class="ppc-progress-fill" id="progress-fill"></div>
+			</div>
+			<div class="ppc-percents" id="ppc-percents">
+				<div class="pcc-percents-wrapper">
+				<span>%</span>
+			</div>
+		</div>
+	</div>
+
+	<progress style="display: none" id="progress_bar" value="0" max="{{ recover_percentage }}"></progress>
+	<div style="color:#E98DAA;text-align:center;font-size:20px"><b>Percentage of Recovered Cases</b></div>
+	</div>
+</div>
+    </div>
+    <div class="col-sm">
+     <div class="bar_container">
+	<div id="main_container">
+		<div id="pbar1" class="progress-pie-chart" data-percent="0">
+			<div class="ppc-progress">
+				<div class="ppc-progress-fill" id="progress-fill1"></div>
+			</div>
+			<div class="ppc-percents" id="ppc-percents1">
+				<div class="pcc-percents-wrapper">
+				<span>%</span>
+			</div>
+		</div>
+	</div>
+
+	<progress style="display: none" id="progress_bar1" value="0" max="{{ death_percentage }}"></progress>
+	<div style="color:#E98DAA;text-align:center;font-size:20px"><b>Percentage of Death cases</b></div>
+	</div>
+</div>
+
+    </div>
+    <div class="col-sm">
+      <div class="bar_container">
+	<div id="main_container">
+		<div id="pbar2" class="progress-pie-chart" data-percent="0">
+			<div class="ppc-progress">
+				<div class="ppc-progress-fill" id="progress-fill2"></div>
+			</div>
+			<div class="ppc-percents" id="ppc-percents2">
+				<div class="pcc-percents-wrapper">
+				<span>%</span>
+			</div>
+		</div>
+	</div>
+
+	<progress style="display: none" id="progress_bar2" value="0" max="{{ confirmed_percentage }}"></progress>
+	<div style="color:#E98DAA;text-align:center;font-size:20px"><b>Percentage of Confirmed Cases</b></div>
+	</div>
+</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
